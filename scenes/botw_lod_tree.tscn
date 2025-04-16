@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfun4g8am6eki"]
+
+[ext_resource type="Script" path="res://scripts/botw_lod_tree.gd" id="1_cmqcg"]
+[ext_resource type="PackedScene" uid="uid://m8asyf8kuwco" path="res://assets/elm-tree-model/elm_tree.glb" id="1_rosr7"]
+[ext_resource type="Texture2D" uid="uid://dixo6ykt0ff67" path="res://assets/elm-tree-billboards/elm-tree-front.png" id="2_wd667"]
+
+[node name="BotwLodTree" type="Node3D"]
+script = ExtResource("1_cmqcg")
+
+[node name="Model" parent="." instance=ExtResource("1_rosr7")]
+
+[node name="Billboard" type="Sprite3D" parent="."]
+transform = Transform3D(27.3418, 0, 0, 0, 27.3418, 0, 0, 0, 1, 0, 16.7466, 0)
+billboard = 2
+double_sided = false
+texture = ExtResource("2_wd667")

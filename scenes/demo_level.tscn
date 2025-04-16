@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://sp2w3i3iq6vg"]
+
+[ext_resource type="PackedScene" uid="uid://bfun4g8am6eki" path="res://scenes/botw_lod_tree.tscn" id="1_vexkl"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_8jmb3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0pcwf"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5tjic"]
+sky_material = SubResource("ProceduralSkyMaterial_0pcwf")
+
+[sub_resource type="Environment" id="Environment_8nekl"]
+background_mode = 2
+sky = SubResource("Sky_5tjic")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0fly3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jweke"]
+albedo_color = Color(0.2611, 0.7, 0.238, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wdjdp"]
+material = SubResource("StandardMaterial3D_jweke")
+size = Vector2(500, 500)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_olu4t"]
+
+[node name="DemoLevel" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8nekl")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_0fly3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_wdjdp")
+skeleton = NodePath("../..")
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="BotwLodTree" parent="Trees" instance=ExtResource("1_vexkl")]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5003)
+script = ExtResource("2_8jmb3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_olu4t")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50401, 0)
