@@ -30,7 +30,7 @@ size = Vector2(500, 500)
 [node name="DemoLevel" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(0.579921, 0.705527, -0.407336, -2.68208e-08, 0.5, 0.866025, 0.814673, -0.502227, 0.289961, 0, 42.1459, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -50,7 +50,7 @@ skeleton = NodePath("../..")
 [node name="BotwLodTree" parent="Trees" instance=ExtResource("1_vexkl")]
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.89392)
 script = ExtResource("2_8jmb3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
