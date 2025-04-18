@@ -22,6 +22,14 @@ func _ready():
 # ---------------------------------------------------------------------------
 
 func _process(_delta):
+	var lateral_distance_to_camera := calculate_lateral_distance_to_camera()
+	if lateral_distance_to_camera >= BILLBOARD_ACTIVIATION_DISTANCE:
+		model.visible = false
+		billboard.visible = true
+	else:
+		model.visible = true
+		billboard.visible = false
+	
 	var angle_from_player_to_tree := rad_to_deg((-self.basis.z).signed_angle_to(self.global_position - player.global_position, Vector3.DOWN))
 	if angle_from_player_to_tree < 0.0:
 		angle_from_player_to_tree = 360.0 + angle_from_player_to_tree
@@ -35,14 +43,6 @@ func _process(_delta):
 	if new_billboard_image_index != billboard_image_index:
 		billboard_image_index = new_billboard_image_index
 		update_billboard_material()
-	
-	var lateral_distance_to_camera := calculate_lateral_distance_to_camera()
-	if lateral_distance_to_camera >= BILLBOARD_ACTIVIATION_DISTANCE:
-		model.visible = false
-		billboard.visible = true
-	else:
-		model.visible = true
-		billboard.visible = false
 	
 	# Uncomment this section to enable manual lod toggling (and comment the above too!)
 	#if Input.is_action_just_pressed("debug_toggle_lod"):
