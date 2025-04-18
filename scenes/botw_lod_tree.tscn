@@ -23,11 +23,12 @@
 size = Vector2(13.435, 13.435)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wq024"]
+resource_local_to_scene = true
 transparency = 1
 albedo_texture = ExtResource("3_tatfp")
 normal_enabled = true
 normal_texture = ExtResource("4_chlvk")
-texture_filter = 2
+texture_filter = 1
 billboard_mode = 2
 
 [node name="BotwLodTree" type="Node3D"]

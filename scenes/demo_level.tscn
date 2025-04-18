@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://sp2w3i3iq6vg"]
+[gd_scene load_steps=10 format=3 uid="uid://sp2w3i3iq6vg"]
 
+[ext_resource type="Script" path="res://scripts/tree_spawner.gd" id="1_5vtci"]
 [ext_resource type="PackedScene" uid="uid://bfun4g8am6eki" path="res://scenes/botw_lod_tree.tscn" id="1_vexkl"]
 [ext_resource type="PackedScene" uid="uid://cvqk8nu65sasx" path="res://scenes/player.tscn" id="18_k1yka"]
 
@@ -43,10 +44,9 @@ shape = SubResource("WorldBoundaryShape3D_0fly3")
 mesh = SubResource("PlaneMesh_wdjdp")
 skeleton = NodePath("../..")
 
-[node name="Trees" type="Node3D" parent="."]
-
-[node name="BotwLodTree" parent="Trees" node_paths=PackedStringArray("player") instance=ExtResource("1_vexkl")]
-player = NodePath("../../Player")
+[node name="Trees" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_5vtci")
+tree_scene = ExtResource("1_vexkl")
+player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("18_k1yka")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

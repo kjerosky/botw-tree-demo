@@ -1,9 +1,9 @@
 class_name BotwLodTree
 extends Node3D
 
-@export var player : Player
-@export var diffuse_textures : Array[Texture2D]
-@export var normal_textures : Array[Texture2D]
+@export var player: Player
+@export var diffuse_textures: Array[Texture2D]
+@export var normal_textures: Array[Texture2D]
 
 @onready var model := $Model
 @onready var billboard := $Billboard
