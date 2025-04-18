@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfun4g8am6eki"]
+[gd_scene load_steps=22 format=3 uid="uid://bfun4g8am6eki"]
 
 [ext_resource type="Script" path="res://scripts/botw_lod_tree.gd" id="1_cmqcg"]
 [ext_resource type="PackedScene" uid="uid://m8asyf8kuwco" path="res://assets/elm-tree-model/elm_tree.glb" id="1_rosr7"]
@@ -31,7 +31,13 @@ normal_texture = ExtResource("4_chlvk")
 texture_filter = 1
 billboard_mode = 2
 
-[node name="BotwLodTree" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fys3e"]
+height = 13.017
+radius = 0.668
+
+[node name="BotwLodTree" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_cmqcg")
 diffuse_textures = Array[Texture2D]([ExtResource("3_tatfp"), ExtResource("3_g1v3r"), ExtResource("4_2uury"), ExtResource("5_f8fuf"), ExtResource("6_cfbiy"), ExtResource("7_1wb8i"), ExtResource("8_gw6k2"), ExtResource("9_3slyr")])
 normal_textures = Array[Texture2D]([ExtResource("4_chlvk"), ExtResource("11_18y0n"), ExtResource("12_anga3"), ExtResource("13_8120e"), ExtResource("14_d76d3"), ExtResource("15_3ybxc"), ExtResource("16_win8u"), ExtResource("17_og1b5")])
@@ -43,3 +49,7 @@ transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.69867, 0)
 mesh = SubResource("QuadMesh_t7jsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_wq024")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.50645, 0)
+shape = SubResource("CylinderShape3D_fys3e")

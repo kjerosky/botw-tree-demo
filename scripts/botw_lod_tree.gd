@@ -1,5 +1,5 @@
 class_name BotwLodTree
-extends Node3D
+extends StaticBody3D
 
 @export var player: Player
 @export var diffuse_textures: Array[Texture2D]
@@ -8,6 +8,7 @@ extends Node3D
 @onready var model := $Model
 @onready var billboard := $Billboard
 @onready var billboard_material := billboard.get_surface_override_material(0) as StandardMaterial3D
+@onready var collider := $CollisionShape3D
 
 const BILLBOARD_ACTIVIATION_DISTANCE := 100.0
 
@@ -16,19 +17,24 @@ var billboard_image_index := 0
 # ---------------------------------------------------------------------------
 
 func _ready():
-	model.visible = false
-	billboard.visible = true
+	use_billboard()
 
 # ---------------------------------------------------------------------------
 
 func _process(_delta):
 	var lateral_distance_to_camera := calculate_lateral_distance_to_camera()
 	if lateral_distance_to_camera >= BILLBOARD_ACTIVIATION_DISTANCE:
-		model.visible = false
-		billboard.visible = true
+		use_billboard()
 	else:
-		model.visible = true
-		billboard.visible = false
+		use_model()
+	
+	# Uncomment this section and comment out the one above to enable manual lod toggling
+	#if Input.is_action_just_pressed("debug_toggle_lod"):
+		#print(calculate_lateral_distance_to_camera())
+		#if model.visible:
+			#use_billboard()
+		#else:
+			#use_model()
 	
 	var angle_from_player_to_tree := rad_to_deg((-self.basis.z).signed_angle_to(self.global_position - player.global_position, Vector3.DOWN))
 	if angle_from_player_to_tree < 0.0:
@@ -43,16 +49,6 @@ func _process(_delta):
 	if new_billboard_image_index != billboard_image_index:
 		billboard_image_index = new_billboard_image_index
 		update_billboard_material()
-	
-	# Uncomment this section to enable manual lod toggling (and comment the above too!)
-	#if Input.is_action_just_pressed("debug_toggle_lod"):
-		#print(calculate_lateral_distance_to_camera())
-		#if model.visible:
-			#model.visible = false
-			#billboard.visible = true
-		#else:
-			#model.visible = true
-			#billboard.visible = false
 
 # ---------------------------------------------------------------------------
 
@@ -70,3 +66,17 @@ func calculate_lateral_distance_to_camera() -> float:
 func update_billboard_material() -> void:
 	billboard_material.albedo_texture = diffuse_textures[billboard_image_index]
 	billboard_material.normal_texture = normal_textures[billboard_image_index]
+
+# ---------------------------------------------------------------------------
+
+func use_billboard() -> void:
+	model.visible = false
+	billboard.visible = true
+	collider.disabled = true
+
+# ---------------------------------------------------------------------------
+
+func use_model() -> void:
+	model.visible = true
+	billboard.visible = false
+	collider.disabled = false
