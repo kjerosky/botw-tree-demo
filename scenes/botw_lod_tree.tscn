@@ -1,9 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfun4g8am6eki"]
+[gd_scene load_steps=21 format=3 uid="uid://bfun4g8am6eki"]
 
 [ext_resource type="Script" path="res://scripts/botw_lod_tree.gd" id="1_cmqcg"]
 [ext_resource type="PackedScene" uid="uid://m8asyf8kuwco" path="res://assets/elm-tree-model/elm_tree.glb" id="1_rosr7"]
+[ext_resource type="Texture2D" uid="uid://dp24kdiml7kvr" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-45.png" id="3_g1v3r"]
 [ext_resource type="Texture2D" uid="uid://cnkfccrlu6sde" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-0.png" id="3_tatfp"]
+[ext_resource type="Texture2D" uid="uid://dmpiumkg6uuy3" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-90.png" id="4_2uury"]
 [ext_resource type="Texture2D" uid="uid://dnmdxfokob5gl" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-0.png" id="4_chlvk"]
+[ext_resource type="Texture2D" uid="uid://cs66w58u2sgkf" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-135.png" id="5_f8fuf"]
+[ext_resource type="Texture2D" uid="uid://dasvof3v3pcuu" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-180.png" id="6_cfbiy"]
+[ext_resource type="Texture2D" uid="uid://c35gjhvvnwvg" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-225.png" id="7_1wb8i"]
+[ext_resource type="Texture2D" uid="uid://yklrtxgqjnqc" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-270.png" id="8_gw6k2"]
+[ext_resource type="Texture2D" uid="uid://lo8b5ihbcoch" path="res://assets/elm-tree-billboards/elm-tree-diffuse-deg-315.png" id="9_3slyr"]
+[ext_resource type="Texture2D" uid="uid://ck21opd76qm0b" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-45.png" id="11_18y0n"]
+[ext_resource type="Texture2D" uid="uid://cylmvvml1otq6" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-90.png" id="12_anga3"]
+[ext_resource type="Texture2D" uid="uid://oofvc2upiwvp" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-135.png" id="13_8120e"]
+[ext_resource type="Texture2D" uid="uid://6njyl8pnax7h" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-180.png" id="14_d76d3"]
+[ext_resource type="Texture2D" uid="uid://c3jajjrwi0mrp" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-225.png" id="15_3ybxc"]
+[ext_resource type="Texture2D" uid="uid://bmcj6h22tejbi" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-270.png" id="16_win8u"]
+[ext_resource type="Texture2D" uid="uid://b4d75old5mjmn" path="res://assets/elm-tree-billboards/elm-tree-normal-deg-315.png" id="17_og1b5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_t7jsl"]
 size = Vector2(13.435, 13.435)
@@ -18,6 +32,8 @@ billboard_mode = 2
 
 [node name="BotwLodTree" type="Node3D"]
 script = ExtResource("1_cmqcg")
+diffuse_textures = Array[Texture2D]([ExtResource("3_tatfp"), ExtResource("3_g1v3r"), ExtResource("4_2uury"), ExtResource("5_f8fuf"), ExtResource("6_cfbiy"), ExtResource("7_1wb8i"), ExtResource("8_gw6k2"), ExtResource("9_3slyr")])
+normal_textures = Array[Texture2D]([ExtResource("4_chlvk"), ExtResource("11_18y0n"), ExtResource("12_anga3"), ExtResource("13_8120e"), ExtResource("14_d76d3"), ExtResource("15_3ybxc"), ExtResource("16_win8u"), ExtResource("17_og1b5")])
 
 [node name="Model" parent="." instance=ExtResource("1_rosr7")]
 transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 0, 0, 0)

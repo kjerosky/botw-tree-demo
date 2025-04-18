@@ -15,6 +15,10 @@ run/main_scene="res://scenes/demo_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [input]
 
 move_forward={

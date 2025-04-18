@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://sp2w3i3iq6vg"]
+[gd_scene load_steps=9 format=3 uid="uid://sp2w3i3iq6vg"]
 
 [ext_resource type="PackedScene" uid="uid://bfun4g8am6eki" path="res://scenes/botw_lod_tree.tscn" id="1_vexkl"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="2_8jmb3"]
+[ext_resource type="PackedScene" uid="uid://cvqk8nu65sasx" path="res://scenes/player.tscn" id="18_k1yka"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0pcwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -25,8 +25,6 @@ albedo_color = Color(0.2611, 0.7, 0.238, 1)
 material = SubResource("StandardMaterial3D_jweke")
 size = Vector2(500, 500)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_olu4t"]
-
 [node name="DemoLevel" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -47,15 +45,8 @@ skeleton = NodePath("../..")
 
 [node name="Trees" type="Node3D" parent="."]
 
-[node name="BotwLodTree" parent="Trees" instance=ExtResource("1_vexkl")]
+[node name="BotwLodTree" parent="Trees" node_paths=PackedStringArray("player") instance=ExtResource("1_vexkl")]
+player = NodePath("../../Player")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.89392)
-script = ExtResource("2_8jmb3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_olu4t")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50401, 0)
+[node name="Player" parent="." instance=ExtResource("18_k1yka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
